@@ -1,1 +1,1 @@
-# smart-buy-product-comparison-by-using-machine-learning-and-web-scraping.
+# smart-buy product price comparison by using machine learning and web-scraping.
