@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealTracker - Price Drop Alert System</title>
+    <!-- Modern Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>DealTracker</h1>
+            <p>Smart Price Comparison & Alert System for Indian E-commerce</p>
+        </header>
+
+        <section class="search-section glass-panel">
+            <form id="searchForm">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for a product (e.g., iPhone 15, MacBook Air M3)..." required>
+                    <button type="submit" id="searchBtn">
+                        <span class="btn-text">Search Deals</span>
+                        <div class="loader-spinner" id="searchSpinner" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <div id="loadingState" class="loading-state" style="display: none;">
+            <div class="pulse-loader"></div>
+            <p>Scraping e-commerce sites for the best prices...</p>
+        </div>
+
+        <div id="errorState" class="error-state glass-panel" style="display: none;">
+            <p id="errorMessage"></p>
+        </div>
+
+        <div id="resultsContainer" style="display: none;">
+            <div class="dashboard-grid">
+                <!-- Best Deal Indicator -->
+                <div class="best-deal-card glass-panel gradient-border">
+                    <div class="card-header">
+                        <h2>🏆 Best Deal Alert</h2>
+                        <span class="pulse-badge">Live</span>
+                    </div>
+                    <div class="deal-content">
+                        <h3 id="bestDealName">Product Name</h3>
+                        <div class="price-tag">
+                            <span class="currency">₹</span>
+                            <span id="bestDealPrice" class="amount">0</span>
+                        </div>
+                        <p class="store-info">Available on <strong id="bestDealStore">Store</strong></p>
+                    </div>
+                </div>
+
+                <!-- Price Comparison Table -->
+                <div class="comparison-card glass-panel">
+                    <h2>Live Price Comparison</h2>
+                    <div class="table-responsive">
+                        <table id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Store</th>
+                                    <th>Product Title</th>
+                                    <th>Price</th>
+                                    <th>Rating & Reviews</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price History Chart -->
+            <div class="chart-section glass-panel">
+                <h2>Price Trend History</h2>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
